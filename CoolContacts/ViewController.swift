@@ -22,11 +22,21 @@ class ViewController: UIViewController , CNContactPickerDelegate {
         contacts.forEach { contact in
             let name = contact.givenName + " " + contact.familyName
             let initials = name.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }
-
-            print(initials)
             
+            let mutableContact = contact.mutableCopy() as! CNMutableContact
+           
+            print("Initials: \(initials)")
+            print("Color: TODO")
+            
+            mutableContact.nickname.append(initials)
+            
+            let store = CNContactStore()
+            let saveRequest = CNSaveRequest()
+            saveRequest.update(mutableContact)
+            try! store.execute(saveRequest)
         }
     }
+    
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
         print("Cancel Contact Picker")
     }
