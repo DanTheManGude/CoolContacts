@@ -20,7 +20,10 @@ class ViewController: UIViewController , CNContactPickerDelegate {
     
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
         contacts.forEach { contact in
-            
+            let name = contact.givenName + " " + contact.familyName
+            let initials = name.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.first!)") + "\($1.first!)" }
+
+            print(initials)
             
         }
     }
