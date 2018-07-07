@@ -25,8 +25,11 @@ class ViewController: UIViewController , CNContactPickerDelegate {
             
             let mutableContact = contact.mutableCopy() as! CNMutableContact
            
+            let h = Float(arc4random()) / 0xFFFFFFFF
+            let color = "(\(h), 0.5, 0.95)"
+            
             print("Initials: \(initials)")
-            print("Color: TODO")
+            print("Color: \(color)")
             
             mutableContact.nickname.append(initials)
             
