@@ -8,8 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController  {
 
+    @IBAction func buttonPressed(_ sender: Any) {
+        print("You, clicked the button")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -22,4 +27,3 @@ class ViewController: UIViewController {
 
 
 }
-
