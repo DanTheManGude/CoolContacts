@@ -7,13 +7,26 @@
 //
 
 import UIKit
+import ContactsUI
 
-class ViewController: UIViewController  {
+class ViewController: UIViewController , CNContactPickerDelegate {
 
     @IBAction func buttonPressed(_ sender: Any) {
         print("You, clicked the button")
+        let cnPicker = CNContactPickerViewController()
+        cnPicker.delegate = self
+        self.present(cnPicker, animated: true, completion: nil)
     }
     
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
+        contacts.forEach { contact in
+            
+            
+        }
+    }
+    func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
+        print("Cancel Contact Picker")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
