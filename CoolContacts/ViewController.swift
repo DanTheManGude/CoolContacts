@@ -10,6 +10,7 @@ import UIKit
 import ContactsUI
 
 class ViewController: UIViewController , CNContactPickerDelegate {
+    
 
     @IBAction func allContacts(_ sender: Any) {
         let store = CNContactStore()
@@ -83,9 +84,34 @@ class ViewController: UIViewController , CNContactPickerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let base = UIBezierPath(arcCenter: CGPoint(x: 190,y: 200), radius: CGFloat(150), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+        let stripe = UIBezierPath(arcCenter: CGPoint(x: 190,y: 200), radius: CGFloat(115), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
+        
+        let baseLayer = CAShapeLayer()
+        let stripelayer = CAShapeLayer()
+        
+        baseLayer.path = base.cgPath
+        stripelayer.path = stripe.cgPath
+        
+        baseLayer.fillColor = UIColor.blue.cgColor
+        stripelayer.fillColor = UIColor.clear.cgColor
+        
+        stripelayer.strokeColor = UIColor.white.cgColor
+
+        
+        baseLayer.lineWidth = 0
+        stripelayer.lineWidth = 15
+
+        
+        view.layer.addSublayer(baseLayer)
+        view.layer.addSublayer(stripelayer)
+
     }
 
+    @IBAction func savePhoto(_ sender: Any) {
+        print("savePhoto")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
