@@ -85,12 +85,24 @@ class ViewController: UIViewController , CNContactPickerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let circleFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        let circleView = UIView(frame: circleFrame)
+        
         let base = UIBezierPath(arcCenter: CGPoint(x: 190,y: 200), radius: CGFloat(150), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
         let stripe = UIBezierPath(arcCenter: CGPoint(x: 190,y: 200), radius: CGFloat(115), startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
         
         let baseLayer = CAShapeLayer()
         let stripelayer = CAShapeLayer()
+        let textLayer = CATextLayer()
         
+        let string = String("AT")
+        textLayer.string = string
+        
+        textLayer.foregroundColor = UIColor.white.cgColor
+        textLayer.font = "ArialMT" as CFTypeRef
+        textLayer.fontSize = 128
+        textLayer.frame = CGRect(x: 100, y: 130, width: 700, height: 900)
+
         baseLayer.path = base.cgPath
         stripelayer.path = stripe.cgPath
         
@@ -98,20 +110,25 @@ class ViewController: UIViewController , CNContactPickerDelegate {
         stripelayer.fillColor = UIColor.clear.cgColor
         
         stripelayer.strokeColor = UIColor.white.cgColor
-
         
         baseLayer.lineWidth = 0
         stripelayer.lineWidth = 15
-
         
-        view.layer.addSublayer(baseLayer)
-        view.layer.addSublayer(stripelayer)
+        
+        circleView.layer.addSublayer(baseLayer)
+        circleView.layer.addSublayer(stripelayer)
+        circleView.layer.addSublayer(textLayer)
 
+        view.addSubview(circleView)
     }
 
     @IBAction func savePhoto(_ sender: Any) {
         print("savePhoto")
     }
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
